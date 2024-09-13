@@ -1,0 +1,54 @@
+import pygame
+
+
+pygame.init()
+screen = pygame.display.set_mode((800,600))
+pygame.display.set_caption("Bace Dash Clone")
+clock = pygame.time.Clock()
+
+White = (255, 255, 255)
+Blue =  (0, 0, 255)
+
+pw, ph = 10, 20
+px, py = 50, 50
+vy, vy = 5, 0
+g = 0.5
+jmp = -10
+double_jmp = -15
+jumping = False
+double_jump = False
+jump_pressed = False
+
+while True:
+    clock.tick(60)
+    
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            
+    keys = pygame.key.get_pressed()
+    
+    
+if keys[pygame.K_left]:
+    px -= vx
+if keys[pygame.K_right]:
+    px = vx
+    
+if not jumping and keys[pygame.K_UP]:
+    vy = jmp
+    jumping = True
+    
+vy += g
+py += vy
+    
+if py >= 600 - ph:
+    py = 600 - ph
+    jumping = False
+    vy = 0
+    
+    screen.fill(WHITE)
+    
+    pygame.draw.rect(screen, BLUE, (px, py, pw, ph))
+    
+    pygame.display.flip()
